@@ -1,7 +1,7 @@
 "use client";
 
-import { ShoppingBag } from "lucide-react";
-import Button from "./ui/button";
+import { Mail, ShoppingBag } from "lucide-react";
+import Button from "./ui/button-custom";
 import { useEffect, useState } from "react";
 import useCart from "@/hooks/use-cart";
 import { useRouter } from "next/navigation";
@@ -20,6 +20,17 @@ const NavbarActions = () => {
 
   return (
     <div className="ml-auto flex items-center gap-x-4">
+      <Button
+        onClick={() => router.push("/contact")}
+        className="group transition-all flex gap-3 text-sm bg-white text-black border border-black rounded-full items-center px-4 py-2 hover:bg-white/60"
+      >
+        <Mail
+          size={20}
+          color="black"
+          className="group-hover:animate-pulse transition"
+        />
+        Contact us
+      </Button>
       <Button
         onClick={() => router.push("/cart")}
         className="flex items-center rounded-full bg-black px-4 py-2"

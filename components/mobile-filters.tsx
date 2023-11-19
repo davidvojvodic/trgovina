@@ -2,7 +2,7 @@
 
 import { Color, Size } from "@/types";
 import React, { useState } from "react";
-import Button from "./ui/button";
+import Button from "./ui/button-custom";
 import { Plus, X } from "lucide-react";
 import { Dialog } from "@headlessui/react";
 import IconButton from "./ui/icon-button";
