@@ -60,7 +60,7 @@ const ContactPage = () => {
                       <FormControl>
                         <Input placeholder="Name" {...field} />
                       </FormControl>
-                      <FormDescription>Please enter your name</FormDescription>
+
                       <FormMessage />
                     </FormItem>
                   )}
@@ -74,7 +74,7 @@ const ContactPage = () => {
                       <FormControl>
                         <Input placeholder="Email" {...field} />
                       </FormControl>
-                      <FormDescription>Please enter your email</FormDescription>
+
                       <FormMessage />
                     </FormItem>
                   )}
@@ -86,11 +86,9 @@ const ContactPage = () => {
                     <FormItem>
                       <FormLabel>Message</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="Message" {...field} />
+                        <Textarea rows={10} placeholder="Message" {...field} />
                       </FormControl>
-                      <FormDescription>
-                        Please enter your message
-                      </FormDescription>
+
                       <FormMessage />
                     </FormItem>
                   )}

@@ -37,3 +37,10 @@ export interface Color {
     name: string;
     value: string
 }
+
+export interface Enquiry {
+    id: string;
+    name: string;
+    email: string;
+    message: string;
+}
