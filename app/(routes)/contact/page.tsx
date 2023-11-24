@@ -17,8 +17,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
+import { sendEmail } from "@/actions/send-email";
+import toast from "react-hot-toast";
 
-const formSchema = z.object({
+export const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
   email: z
     .string()
@@ -38,8 +40,17 @@ const ContactPage = () => {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    try {
+      await sendEmail(data);
+
+      toast.success("Sent successfully!");
+
+      form.reset();
+    } catch (error) {
+      toast.error("An error occured");
+      console.log(error);
+    }
   };
   return (
     <div className="bg-white">
@@ -48,8 +59,8 @@ const ContactPage = () => {
           <div className="px-20 py-10 border-2 rounded-lg shadow-lg mx-10">
             <Form {...form}>
               <form
-                onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-8"
+                onSubmit={form.handleSubmit(onSubmit)}
               >
                 <FormField
                   control={form.control}
