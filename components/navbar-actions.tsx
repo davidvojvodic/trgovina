@@ -20,7 +20,7 @@ const NavbarActions = () => {
 
   return (
     <div className="ml-auto flex items-center gap-x-4">
-      <Button
+      {/* <Button
         onClick={() => router.push("/contact")}
         className="group transition-all flex gap-3 text-sm bg-white text-black border border-black rounded-full items-center px-4 py-2 hover:bg-white/60"
       >
@@ -30,7 +30,7 @@ const NavbarActions = () => {
           className="group-hover:animate-pulse transition"
         />
         Contact us
-      </Button>
+      </Button> */}
       <Button
         onClick={() => router.push("/cart")}
         className="flex items-center rounded-full bg-black px-4 py-2"
