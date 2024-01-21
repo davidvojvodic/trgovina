@@ -1,13 +1,27 @@
 "use client";
 
-import { Mail, ShoppingBag } from "lucide-react";
-import Button from "./ui/button-custom";
+import { Mail, ShoppingBag, User2Icon } from "lucide-react";
+import {Button} from "./ui/button";
 import { useEffect, useState } from "react";
 import useCart from "@/hooks/use-cart";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 const NavbarActions = () => {
   const [isMouted, setIsMouted] = useState(false);
+  const [user, setUser] = useState(true);
 
   useEffect(() => {
     setIsMouted(true);
@@ -20,26 +34,69 @@ const NavbarActions = () => {
 
   return (
     <div className="ml-auto flex items-center gap-x-4">
-      {/* <Button
-        onClick={() => router.push("/contact")}
-        className="group transition-all flex gap-3 text-sm bg-white text-black border border-black rounded-full items-center px-4 py-2 hover:bg-white/60"
-      >
-        <Mail
-          size={20}
-          color="black"
-          className="group-hover:animate-pulse transition"
-        />
-        Contact us
-      </Button> */}
+
+      {/* TO DO: Če user ne obstaja, rendera login button */}
+    
+      {!user && (
+        <Link href="/login">
+          <Button>
+            Login
+          </Button>
+        </Link>
+      )}
+      
       <Button
         onClick={() => router.push("/cart")}
-        className="flex items-center rounded-full bg-black px-4 py-2"
+        className="p-2 rounded-full"
+        variant={"ghost"}
       >
-        <ShoppingBag size={20} color="white" />
-        <span className="ml-2 text-sm font-medium text-white">
+        <ShoppingBag size={20} color="black" />
+        <span className="text-md ml-1 font-medium">
           {cart.items.length}
         </span>
       </Button>
+
+        {user && (
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+
+              <Link href="/account">
+                <DropdownMenuItem className="flex justify-between">
+                 <div>Account</div>
+                 
+
+                  <User2Icon className="w-5 h-5" />
+
+                </DropdownMenuItem>
+              </Link>  
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <Link href={"/logout"}>
+                <DropdownMenuItem>
+                  Sign out
+                </DropdownMenuItem>
+              </Link>
+            </DropdownMenuContent>
+
+          </DropdownMenu>
+        )}
+
+        {!user && (
+          <Avatar> 
+            <AvatarFallback>AN</AvatarFallback>
+          </Avatar>
+        )}
+
     </div>
   );
 };

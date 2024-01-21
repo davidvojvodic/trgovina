@@ -1,3 +1,10 @@
+export interface Store {
+    id: string;
+    name: string;
+    userId: string;
+    storeImage: string;
+}
+
 export interface Billboard {
     id: string;
     label: string;
