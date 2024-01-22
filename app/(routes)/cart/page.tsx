@@ -1,22 +1,22 @@
 "use client";
 
 import Container from "@/components/ui/container";
-import useCart from "@/hooks/use-cart";
+import {useCart} from "@/hooks/use-cart";
 import { useState, useEffect } from "react";
 import CartItem from "./components/cart-item";
 import Summary from "@/components/summary";
 const CartPage = () => {
-  // const [isMounted, setIsMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const cart = useCart();
 
-  // useEffect(() => {
-  //   setIsMounted(true);
-  // }, []);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-  // if (!isMounted) {
-  //   return null;
-  // }
+  if (!isMounted || !cart) {
+    return null;
+  }
 
   return (
     <div className="bg-white">
@@ -29,7 +29,7 @@ const CartPage = () => {
                 <p className="text-neutral-500">No items added to cart</p>
               )}
               <ul>
-                {cart.items.map((item) => (
+                {cart?.items?.map((item) => (
                   <CartItem key={item.id} data={item} />
                 ))}
               </ul>
